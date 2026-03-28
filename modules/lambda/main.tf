@@ -18,8 +18,8 @@ resource "aws_lambda_function" "snapshot_cleanup" {
   }
   environment {
     variables = {
-      AWS_REGION     = data.aws_region.current.region
-      DRY_RUN        = tostring(var.dry_run) ## optional to add this feature
+      aws_region     = data.aws_region.current.region
+      retention_days = tostring(var.retention_days)
     }
   }
   tags = var.tags

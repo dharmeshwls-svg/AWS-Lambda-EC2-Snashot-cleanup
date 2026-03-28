@@ -11,3 +11,5 @@
 .terraformrc
 *.tfplan
 *.tfplan.out
+.terraform.tfstate.lock.info
+src/lambda_function.zip

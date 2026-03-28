@@ -7,15 +7,20 @@ variable "aws_region" {
 variable "vpc_id" {
   description = "The ID of the VPC."
   type        = string
-  default = ""
+  default     = ""
 }
 variable "subnet_ids" {
   description = "List of private subnet IDs"
   type        = list(string)
-  default = [ "" ]
+  default     = [""]
 }
 variable "security_group_ids" {
   description = "List of security group IDs"
   type        = list(string)
-  default = [""]
+  default     = [""]
+}
+variable "retention_days" {
+  description = "Number of days to retain snapshots before deletion."
+  type        = number
+  default     = 365
 }

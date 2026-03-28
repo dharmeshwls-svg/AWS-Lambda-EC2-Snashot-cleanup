@@ -30,7 +30,12 @@ resource "aws_iam_role_policy" "lambda_execution_policy" {
         Action = [
           "ec2:DescribeInstances",
           "ec2:DescribeSnapshots",
-          "ec2:DeleteSnapshot"
+          "ec2:DeleteSnapshot",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:AssignPrivateIpAddresses",
+          "ec2:UnassignPrivateIpAddresses"
         ]
         Resource = "*"
       },

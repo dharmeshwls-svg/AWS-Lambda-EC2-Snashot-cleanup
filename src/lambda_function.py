@@ -10,15 +10,15 @@ logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     # Get environment variables
-    retention_years = int(os.getenv('RETENTION_YEARS', '1'))
-    region = os.getenv('AWS_REGION', 'us-east-1')
+    retention_days = int(os.getenv('retention_days'))
+    region = os.getenv('aws_region')
     
     # Initialize EC2 client
     ec2_client = boto3.client('ec2', region_name=region)
     
     # Calculate cutoff date for deletion
     now = datetime.now(timezone.utc)
-    delete_limit_date = now - relativedelta(years=retention_years)
+    delete_limit_date = now - timedelta(days=retention_days)
     logger.info(f"Searching for snapshots older than: {delete_limit_date.strftime('%Y-%m-%d')}")
 
     # Get all Snapshots owned by the account
@@ -31,6 +31,10 @@ def lambda_handler(event, context):
     
     for page in paginator.paginate(OwnerIds=['self']):
         total_snapshots += len(page['Snapshots'])   
+        # Snanpshot not found
+        if total_snapshots == 0:
+            logger.info("No snapshots found for this account.") 
+
         for snapshot in page['Snapshots']:
     
             snapshot_id = snapshot['SnapshotId']
