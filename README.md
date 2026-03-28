@@ -21,6 +21,11 @@ The project provides an aws lambda function to automatically delete EC2 snapshot
 - CloudWatch Events: Schedule daily exececution
 - CloudWatch : Lambda function execution loggin
 
+## Prerequisites
+- AWS CLI configure with appropriate permisison 
+- Python versin 12 or newer
+- Terraform version >= 1.0  (For this project, Terraform versin 1.14.8 was used for infrastructure as code implementation)
+
 # Features of Module
 - Lambda inside exiting VPC/Subnets
 - EventBridge scheduled trigger
@@ -33,20 +38,14 @@ The project provides an aws lambda function to automatically delete EC2 snapshot
 - subnet_id
 - AWS_REGION
 
-## Prerequisites
-- AWS CLI configure with appropriate permisison 
-- Python versin 12 or newer
-- Terraform version >= 1.0  (For this project, Terraform versin 1.14.8 was used for infrastructure as code implementation)
-
 # Infrastructure deployment step using Terraform CLI
-- Terraform init  - Downloads necessary provider plugsins and modules, and initialized backend
+- Terraform init  - Downloads necessary provider plugins and modules, and initialized backend
 - Terraform fmt  -  Format code 
 - Terraform validate - Validates code sysntex
 - Terraform apply - Deploy code, this will require approval
 
 # Deploying code to lambda function
-- Generate zip file 
-- terraform apply -target=module.snapshot_cleanup_lambda - command to deploy indvidual module 
+- Terraform will generate ZIP file to upload to Lambda function
 
 # Monitoring lambda execution 
 - CloudWatch Metrics: Lambda invoation, duration, and error metrics
