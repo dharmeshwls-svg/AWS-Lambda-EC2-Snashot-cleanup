@@ -50,4 +50,4 @@ The project provides an aws lambda function to automatically delete EC2 snapshot
 
 # Monitoring lambda execution 
 - CloudWatch Metrics: Lambda invoation, duration, and error metrics
-- Cloudwatch Logs: "aws/lambda/prod-ec2-snapshot-cleanup
+- Cloudwatch Logs: "aws/lambda/prod-ec2-snapshot-cleanup"
