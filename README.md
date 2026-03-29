@@ -45,8 +45,9 @@ The project provides an aws lambda function to automatically delete EC2 snapshot
 - Terraform apply - Deploy code, this will require approval
 
 # Deploying code to lambda function
-- Terraform will generate ZIP file to upload to Lambda function
+- Package the Lambda code as ZIP with its dependencies and deploy it using Terraform and CI/CD automation
+- AWS CLI can be used for quick update but not recommended for production
 
 # Monitoring lambda execution 
 - CloudWatch Metrics: Lambda invoation, duration, and error metrics
-- Cloudwatch Logs: "aws/lambda/prod-ec2-snapshot-cleanup
+- Cloudwatch Logs: "aws/lambda/prod-ec2-snapshot-cleanup"
